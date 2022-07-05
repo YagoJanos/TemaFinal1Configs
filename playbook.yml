@@ -1,0 +1,16 @@
+--- 
+- hosts: servers
+  become: yes
+
+  tasks:
+    - name: create a Directory /opt/gradle
+      file:
+        path: ~/opt/gradel
+        state: directory
+        mode: 0755
+
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
+        dest: ~/
+        remote_src: yes
