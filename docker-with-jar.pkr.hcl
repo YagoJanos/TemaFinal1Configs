@@ -10,15 +10,31 @@ packer {
 source "docker" "ubuntu" {
   image  = "ubuntu:xenial"
   commit = true
+  changes = [
+      "EXPOSE 8080",
+      "ENTRYPOINT [\"java\", -\"jar\", \"/home/Calculator.jar\"]
+    ]
 }
 
 build {
-  name    = "packer-with-jar"
+  name    = "Job2"
   sources = [
     "source.docker.ubuntu"
   ]
   
+  provisioner "shell" {
+    inline = [
+      "apt update",
+      "apt install -y ansible",
+    ]
+  }
+  
+  provisioner "file" {
+    source = "./Calculator.jar"
+    destination = "/home/Calculator.jar"
+  }
+  
   provisioner "ansible" {
      playbook_file = "./playbook.yml"
-   }
+  }
 }
