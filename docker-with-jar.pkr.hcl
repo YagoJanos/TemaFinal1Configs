@@ -43,7 +43,7 @@ build {
   }
   
   provisioner "ansible" {
-     playbook_file = "./playbook.yml"
+     playbook_file = "playbook.yml"
   }
   
   post-processors {
@@ -53,8 +53,8 @@ build {
     }
     post-processor "docker-push" {
         login = true
-        login_username = var.username
-        login_password = var.password
+        login_username = "${var.username}"
+        login_password = "${var.password}"
     }
   }
 }
