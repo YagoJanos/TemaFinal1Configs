@@ -5,7 +5,7 @@
   become: yes
 
   tasks:
-    - name: Install JRE
+    - name: Installing JRE 8
       apt:
         name: openjdk-8-jre
         state: latest
