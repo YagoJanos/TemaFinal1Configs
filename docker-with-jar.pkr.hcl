@@ -16,6 +16,14 @@ source "docker" "ubuntu" {
     ]
 }
 
+variable "username" {
+  type = string
+}
+
+variable "password" {
+  type = string
+}
+
 build {
   name    = "Job2"
   sources = [
@@ -45,8 +53,8 @@ build {
     }
     post-processor "docker-push" {
         login = true
-        login_username = ""
-        login_password = ""
+        login_username = var.username
+        login_password = var.password
     }
   }
 }
