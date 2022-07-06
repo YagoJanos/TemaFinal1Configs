@@ -1,7 +1,6 @@
 ---
 - name: Configuring container
-  hosts: 127.0.0.1
-  remote_user: root
+  hosts: localhost
   become: yes
 
   tasks:
