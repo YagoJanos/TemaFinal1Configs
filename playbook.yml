@@ -1,6 +1,8 @@
---- 
-- hosts: servers
+---
+- name: Installing Java 8
+  hosts: 127.0.0.1
   become: yes
+  connection: local
 
   tasks:
     - name: create a Directory /opt/gradle
