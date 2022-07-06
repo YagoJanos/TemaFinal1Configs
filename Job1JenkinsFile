@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages{
+        stage('Git Clone') {
+            steps{
+                git branch: 'master', url: 'https://github.com/YagoJanos/KaryonRXNettyCalculator'
+            }
+        }
+        stage('Run Tests') {
+            steps{
+                sh './gradlew test'
+            }
+        }
+        stage('Build Jar'){
+            steps{
+                sh './gradlew clean build'
+            }
+        }
+        stage('Upload artifact to Artifactory'){
+            environment {
+                JFROG_PASSWORD = credentials('jfrog_password')
+            }
+            
+            steps{
+                sh 'curl -u jenkins:$JFROG_PASSWORD -XPUT http://localhost:8082/artifactory/img-abc/KaryonRXNettyCalculator-1.0.jar -T build/libs/KaryonRXNettyCalculator-1.0.jar'
+            }
+        }
+    }
+}
