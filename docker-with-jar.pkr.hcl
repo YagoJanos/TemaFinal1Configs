@@ -8,7 +8,7 @@ packer {
 }
 
 source "docker" "ubuntu" {
-  image  = "ubuntu:xenial"
+  image  = "ubuntu:ubuntu:20.04"
   commit = true
   changes = [
       "EXPOSE 8080",
