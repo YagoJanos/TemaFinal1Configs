@@ -1,7 +1,6 @@
 ---
 - name: Configuring container
-  hosts: localhost
-  remote_user: sudo
+  hosts: all
   become: yes
 
   tasks:
