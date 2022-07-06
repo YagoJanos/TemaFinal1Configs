@@ -1,18 +1,11 @@
 ---
-- name: Installing Java 8
+- name: Configuring container
   hosts: 127.0.0.1
-  become: yes
   connection: local
+  become: yes
 
   tasks:
-    - name: create a Directory /opt/gradle
-      file:
-        path: ~/opt/gradel
-        state: directory
-        mode: 0755
-
-    - name: Unarchive a file that needs to be downloaded (added in 2.0)
-      unarchive:
-        src: https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
-        dest: ~/
-        remote_src: yes
+    - name: Install JRE
+      apt:
+        name: openjdk-8-jre
+        state: latest
