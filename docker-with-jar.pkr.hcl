@@ -8,7 +8,7 @@ packer {
 }
 
 source "docker" "ubuntu" {
-  image  = "ubuntu:focal"
+  image  = "ubuntu:xenial"
   commit = true
   changes = [
       "EXPOSE 8080",
@@ -53,8 +53,8 @@ build {
     }
     post-processor "docker-push" {
         login = true
-        login_username = "${var.username}"
-        login_password = "${var.password}"
+        login_username = var.username
+        login_password = var.password
     }
   }
 }
