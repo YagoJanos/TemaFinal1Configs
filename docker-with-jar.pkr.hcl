@@ -37,4 +37,16 @@ build {
   provisioner "ansible" {
      playbook_file = "./playbook.yml"
   }
+  
+  post-processors {
+    post-processor "docker-tag" {
+        repository =  "yagojanos/temafinal1"
+        tags = ["0.1"]
+    }
+    post-processor "docker-push" {
+        login = true
+        login_username = ""
+        login_password = ""
+    }
+  }
 }
