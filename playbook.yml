@@ -4,10 +4,7 @@
   become: yes
 
   tasks:
-    - name: install python
-      raw: test -e /usr/bin/python || (apt -qqy update && apt install -y python)
-      register: output
-      changed_when: output.stdout != ""
     - name: Installing JRE 8
       apt:
-        name: openjdk-17-jre
+        name: openjdk-8-jre
+        state: latest
