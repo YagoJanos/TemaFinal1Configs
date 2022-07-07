@@ -1,22 +1,11 @@
 ---
 - name: Configuring container
-  hosts: all
+  hosts: 127.0.0.1
+  connection: local
   become: yes
 
   tasks:
-    
-    - name: install python2 on ubuntu 18.04 instances
-      hosts: "*"
-      gather_facts: false
-      tasks:
-    - name: run apt-get update and install python
-      raw: "{{ item }}"
-      loop:
-        - sudo apt-get update
-        - sudo apt-get -y install python
-      become: true
-  
-    - name: Installing JRE 8
+    - name: Install JRE
       apt:
         name: openjdk-8-jre
         state: latest
