@@ -7,4 +7,4 @@
   tasks:
     - name: Install JRE
       apt:
-        name: openjdk-17-jre
+        name: openjdk-8-jre
