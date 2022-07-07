@@ -1,1 +1,31 @@
 
+pipeline {
+    agent any
+    stages{
+        stage('Download Jar from JFROG') {
+            environment {
+                JFROG_PASSWORD = credentials('jfrog_password')
+            }
+            steps{
+                sh 'curl -u jenkins:$JFROG_PASSWORD -XGET http://localhost:8082/artifactory/img-abc/KaryonRXNettyCalculator-1.0.jar --output Calculator.jar'
+            }
+        }
+        
+        stage('Downloading Packer and Ansible Config Files'){
+            steps{
+                git branch: 'main', url: 'https://github.com/YagoJanos/TemaFinal1Configs.git'
+            }
+        }
+        
+        stage('Packer execution') {
+            environment {
+                DOCKERHUB_USERNAME = credentials('dockerhub_username')
+                DOCKERHUB_PASSWORD = credentials('dockerhub_password')
+            }
+            steps{
+                sh 'packer init docker-with-jar.pkr.hcl'
+                sh 'packer build -var "username=$DOCKERHUB_USERNAME" -var "password=$DOCKERHUB_PASSWORD" docker-with-jar.pkr.hcl'
+            }
+        }
+    }
+}
