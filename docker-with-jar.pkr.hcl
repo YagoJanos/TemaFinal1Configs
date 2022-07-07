@@ -12,7 +12,7 @@ source "docker" "ubuntu" {
   commit = true
   changes = [
       "EXPOSE 8080",
-      "ENTRYPOINT [\"java\", \"-jar\", \"/home/Calculator.jar\"]"
+      "ENTRYPOINT [\"java\", \"-jar\", \"./Calculator.jar\"]"
     ]
 }
 
@@ -41,7 +41,7 @@ build {
   
   provisioner "file" {
     source = "./Calculator.jar"
-    destination = "/home/Calculator.jar"
+    destination = "/Calculator.jar"
   }
   
   provisioner "ansible" {
