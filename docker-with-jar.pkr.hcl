@@ -27,7 +27,7 @@ variable "password" {
 }
 
 build {
-  name    = "Job2"
+  name = "Job2"
   sources = [
     "source.docker.ubuntu"
   ]
