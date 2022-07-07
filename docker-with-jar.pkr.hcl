@@ -34,8 +34,8 @@ build {
   
   provisioner "shell" {
     inline = [
-      "apt update",
-      "apt install -y ansible",
+      "sudo apt update",
+      "sudo apt install -y ansible",
     ]
   }
   
