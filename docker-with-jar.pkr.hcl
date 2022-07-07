@@ -11,8 +11,8 @@ source "docker" "ubuntu" {
   image  = "ubuntu:xenial"
   commit = true
   changes = [
-      "EXPOSE 8080",
-      "ENTRYPOINT [\"java\" \"-jar\", \"./Calculator.jar\"]"
+      "EXPOSE 8085",
+      "ENTRYPOINT java -jar Calculator.jar"
     ]
 }
 
@@ -35,7 +35,7 @@ build {
   provisioner "shell" {
     inline = [
       "apt-get update",
-      "apt-get install ansible -y",
+      "apt-get install -y ansible",
     ]
   }
   
