@@ -12,7 +12,7 @@ source "docker" "ubuntu" {
   commit = true
   changes = [
       "EXPOSE 8080",
-      "ENTRYPOINT java -jar ./Calculator.jar"
+      "ENTRYPOINT [\"java\", \"-jar\", \"/home/Calculator.jar\"]"
     ]
 }
 
