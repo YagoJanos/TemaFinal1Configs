@@ -12,7 +12,7 @@ source "docker" "ubuntu" {
   commit = "true"
   changes = [
       "EXPOSE 8085",
-      "ENTRYPOINT java -jar [\"java\", \"-jar\", \"Calculator.jar\"]"
+      "ENTRYPOINT java -jar [\"java\", \"-jar\", \"/Calculator.jar\"]"
     ]
 }
 
@@ -35,7 +35,7 @@ build {
   provisioner "shell" {
     inline = [
       "apt-get update",
-      "apt-get install -y ansible",
+      "apt-get install ansible -y"
     ]
   }
   
@@ -44,7 +44,7 @@ build {
     destination = "/Calculator.jar"
   }
   
-  provisioner "ansible" {
+  provisioner "ansible-local" {
      playbook_file = "./playbook.yml"
   }
   
