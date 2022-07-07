@@ -8,8 +8,8 @@ packer {
 }
 
 source "docker" "ubuntu" {
-  image  = "ubuntu:20.04"
-  commit = "true"
+  image  = "ubuntu:xenial"
+  commit = true
   changes = [
       "EXPOSE 8085",
       "ENTRYPOINT java -jar [\"java\", \"-jar\", \"/Calculator.jar\"]"
