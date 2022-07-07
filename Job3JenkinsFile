@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Pull Dockerhub') {
+            steps {
+                sh 'docker pull yagojanos/temafinal1:0.1'
+            }
+        }
+          stage('Docker run') {
+            steps {
+                sh 'docker run  -d -p 8085:8085 yagojanos/temafinal1:0.1'
+            }
+        }
+    }
+}
