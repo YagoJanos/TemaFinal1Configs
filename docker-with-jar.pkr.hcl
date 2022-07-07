@@ -34,8 +34,8 @@ build {
   
   provisioner "shell" {
     inline = [
-      "sudo apt update",
-      "sudo apt install -y ansible",
+      "apt update",
+      "apt install -y ansible",
     ]
   }
   
@@ -45,7 +45,7 @@ build {
   }
   
   provisioner "ansible" {
-     playbook_file = "playbook.yml"
+     playbook_file = "./playbook.yml"
   }
   
   post-processors {
